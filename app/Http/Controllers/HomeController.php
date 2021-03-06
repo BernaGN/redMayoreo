@@ -24,9 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', [
-        'collection' => DB::table('prueba')
-            ->get()
-    ]);
+        return view('home');
     }
 }
