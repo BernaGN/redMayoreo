@@ -9,7 +9,7 @@ header('Location: http://proyecto.redmayoreo.com/public/');
 |--------------------------------------------------------------------------
 */
 
-//require __DIR__.'/vendor/autoload.php';
+//require __DIR__.'../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ header('Location: http://proyecto.redmayoreo.com/public/');
 |--------------------------------------------------------------------------
 */
 
-//$app = require_once __DIR__.'/bootstrap/app.php';
+//$app = require_once __DIR__.'../bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
