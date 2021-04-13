@@ -20,6 +20,7 @@ use HasFactory, Notifiable;
         'name',
         'email',
         'password',
+        'foto',
     ];
 
     /**
