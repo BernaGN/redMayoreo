@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Red Mayoreo</title>
+    <link rel="icon" href="{{ asset('images/redMayoreo/icon.ico') }}">
     @yield('css')
 </head>
 <!--
@@ -33,7 +34,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ route('home') }}" class="brand-link">
-                <img src="{{ asset('images/ICONsquare.png') }}" alt="AdminLTE Logo"
+                <img src="{{ asset('images/redMayoreo/ICONsquare.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
             </a>
