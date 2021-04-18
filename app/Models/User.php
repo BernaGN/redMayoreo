@@ -6,10 +6,16 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-use HasFactory, Notifiable;
+    use HasFactory, Notifiable;
+    use HasRoles;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -41,4 +47,10 @@ use HasFactory, Notifiable;
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeSearchByAndPaginate($query, $nombre = '', $pagination = 25) {
+        return $query->where('name', 'LIKE', "%$nombre%")
+                    ->orWhere('email', 'LIKE', "%$nombre%")
+                    ->paginate($pagination);
+    }
 }

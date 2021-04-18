@@ -7,3 +7,7 @@ function active($path) {
 function open($path) {
     return request()->is($path)  ? 'menu-open' : '';
 }
+
+function selectedIcon($path, $color = 'primary') {
+    return request()->is($path) ? 'text-'.$color.' fas' : 'far';
+}
