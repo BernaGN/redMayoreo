@@ -36,25 +36,27 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                @if (session('info'))
-                                    <div class="alert alert-success"><strong>{{ session('info') }}</strong></div>
-                                @endif
+                            <div class="card-body">
+                                <div class="card-header">
+                                    @if (session('info'))
+                                        <div class="alert alert-success"><strong>{{ session('info') }}</strong></div>
+                                    @endif
+                                </div>
+                                {!! Form::model($role, ['route' => ['roles.update', $role->id], 'method' => 'put']) !!}
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" name="name" id="name" class="form-control"
+                                        placeholder="Ingrese el nombre del rol" value="{{ $role->name }}" required>
+                                </div>
+                                <h2 class="h3">Lista de Permisos</h2>
+                                @foreach ($permisos as $permiso)
+                                    <label>
+                                        {!! Form::checkbox('permissions[]', $permiso->id, null, ['class' => 'mr-1']) !!} {{ $permiso->description }}
+                                    </label><br>
+                                @endforeach
+                                <button type="submit" class="btn btn-primary">Editar Rol</button>
+                                {!! Form::close() !!}
                             </div>
-                            {!! Form::model($role, ['route' => ['roles.update', $role->id], 'method' => 'put']) !!}
-                            <div class="form-group">
-                                <label>Nombre</label>
-                                <input type="text" name="name" id="name" class="form-control"
-                                    placeholder="Ingrese el nombre del rol" value="{{ $role->name }}" required>
-                            </div>
-                            <h2 class="h3">Lista de Permisos</h2>
-                            @foreach ($permisos as $permiso)
-                                <label>
-                                    {!! Form::checkbox('permissions[]', $permiso->id, null, ['class' => 'mr-1']) !!} {{ $permiso->description }}
-                                </label><br>
-                            @endforeach
-                            <button type="submit" class="btn btn-primary">Editar Rol</button>
-                            {!! Form::close() !!}
                         </div>
                         <!-- /.card -->
                     </div>
