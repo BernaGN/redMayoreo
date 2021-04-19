@@ -1,5 +1,5 @@
 <?php
-header('Location: http://proyecto.redmayoreo.com/public/');
+header('Location: public/');
 
 //define('LARAVEL_START', microtime(true));
 
