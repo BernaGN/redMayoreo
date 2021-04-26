@@ -26,7 +26,7 @@ class Proveedor extends Model
 
     public function productos()
     {
-        return $this->belongsTo(Producto::class);
+        return $this->hasMany(Producto::class);
     }
 
     public function scopeSearchAndPaginate($query, $nombre = '', $pagination = 25) {

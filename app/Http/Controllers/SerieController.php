@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Proveedor;
+use App\Models\Cliente;
+use App\Models\Producto;
+use App\Models\NumSerie;
+use App\Models\SerieEntregada;
+use App\Models\DetalleSerieEntregada;
 
 class SerieController extends Controller
 {
@@ -13,7 +19,14 @@ class SerieController extends Controller
      */
     public function index()
     {
-        return view('Procesos.Series.index');
+        return view('Procesos.Series.index', [
+            'proveedores' => Proveedor::all(),
+            'clientes' => Cliente::all(),
+            'productos' => Producto::all(),
+            'numSerie' => NumSerie::all(),
+            'serieEntregadas' => SerieEntregada::paginate(),
+            'detalleSerieEntregada' => DetalleSerieEntregada::all(),
+        ]);
     }
 
     /**

@@ -158,6 +158,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    {{ $proveedores->links() }}
                                 </div>
                                 <!-- /.card-body -->
                             @else

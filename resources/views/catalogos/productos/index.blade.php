@@ -117,7 +117,7 @@
                                                         <td>
                                                             <form
                                                                 action="
-                                                                                                                {{ route('productos.destroy', $producto->id) }}"
+                                                                                                                        {{ route('productos.destroy', $producto->id) }}"
                                                                 method="post">
                                                                 <button type="submit" class="btn btn-danger"
                                                                     onclick="return confirm('Quieres borrar el registro')">
@@ -132,6 +132,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    {{ $productos->links() }}
                                 </div>
                                 <!-- /.card-body -->
                             @else

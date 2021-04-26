@@ -131,13 +131,13 @@
                                                                 data-email="{{ $cliente->email }}"
                                                                 data-fijo="{{ $cliente->fijo }}"
                                                                 data-celular="{{ $cliente->celular }}"">
-                                                                                                            Editar
-                                                                                                        </button>
-                                                                                                </td>
-                                                                    @endcan
-                                                                    @can('clientes.update')
-                                                                            <td>
-                                                                                <form action="
+                                                                                                                    Editar
+                                                                                                                </button>
+                                                                                                        </td>
+                                                                        @endcan
+                                                                        @can('clientes.update')
+                                                                                    <td>
+                                                                                        <form action="
                                                                 {{ route('clientes.destroy', $cliente->id) }}" method="post">
                                                                 <button type="submit" class="btn btn-danger"
                                                                     onclick="return confirm('Quieres borrar el registro')">
@@ -152,6 +152,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    {{ $clientes->links() }}
                                 </div>
                                 <!-- /.card-body -->
                             @else

@@ -21,6 +21,11 @@ class Cliente extends Model
         'celular',
     ];
 
+    public function serieEntregadas()
+    {
+        return $this->hasMany(serieEntregadas::class);
+    }
+
     public function scopeSearchAndPaginate($query, $nombre = '', $pagination = 25) {
         return $query->where('nombre', 'LIKE', "%$nombre%")
                     ->paginate($pagination);
