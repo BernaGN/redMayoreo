@@ -24,6 +24,11 @@ class Producto extends Model
         return $this->belongsTo(Proveedor::class);
     }
 
+    public function detalleSerieEntregada()
+    {
+        return $this->belongsTo(DetalleSerieEntregada::class);
+    }
+
     public function scopeSearchAndPaginate($query, $nombre = '', $pagination = 25) {
         return $query->where('nombre', 'LIKE', "%$nombre%")
                     ->paginate($pagination);
