@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
-class ProveedorController extends Controller
+class ProductoController extends Controller
 {
-    public function __construct() {
-        $this->middleware('can:proveedores.index')->only('index');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+        public function index(Request $request)
     {
         $sql = trim($request->get('search'));
-        return view('catalogos.proveedores.index', [
-            'proveedores' => Proveedor::searchAndPaginate($sql),
+        return view('catalogos.productos.index', [
+            'productos' => Producto::searchAndPaginate($sql),
+            'proveedores' => Proveedor::select('id', 'nombre')->get(),
             'texto' => $sql,
         ]);
     }
@@ -32,7 +31,7 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        Proveedor::create($request->all());
+        Producto::create($request->all());
         return back()->with('info', 'El rol se creo con exito');
     }
 
@@ -40,25 +39,25 @@ class ProveedorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Proveedor  $proveedor
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $proveedor = Proveedor::findOrFail($id);
-        $proveedor->update($request->all());
+        $producto = Producto::findOrFail($id);
+        $producto->update($request->all());
         return back()->with('info', 'Se modifico el proveedor con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Proveedor  $proveedor
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Proveedor::findOrFail($id)->delete();
+        producto::findOrFail($id)->delete();
         return back()->with('info', 'Se elimino el proveedor con exito');
     }
 }

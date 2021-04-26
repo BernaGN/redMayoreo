@@ -24,7 +24,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
                 <li
-                    class="nav-item {{ open('home') }} {{ open('/') }} {{ open('usuarios') }} {{ open('roles') }}">
+                    class="nav-item {{ open('home') }} {{ open('/') }} {{ open('usuarios') }} {{ open('roles') }} {{ open('parametros') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -34,14 +34,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('parametros') }}" class="nav-link {{ active('parametros') }}">
+                                <i class="{{ selectedIcon('usuarios') }} fa-circle nav-icon"></i>
                                 <p>Parametros</p>
                             </a>
                         </li>
                         @can('usuarios.index')
                             <li class="nav-item">
-                                <a href="{{ route('usuarios.index') }}" class="nav-link  {{ active('usuarios') }}">
+                                <a href="{{ route('usuarios.index') }}" class="nav-link {{ active('usuarios') }}">
                                     <i class="{{ selectedIcon('usuarios') }} fa-circle nav-icon"></i>
                                     <p>Usuarios</p>
                                 </a>
@@ -57,7 +57,7 @@
                         @endcan
                     </ul>
                 </li>
-                <li class="nav-item {{ open('proveedores') }}">
+                <li class="nav-item {{ open('proveedores') }} {{ open('clientes') }} {{ open('productos') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
@@ -75,10 +75,26 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('clientes.index')
+                            <li class="nav-item">
+                                <a href="{{ route('clientes.index') }}" class="nav-link {{ active('clientes') }}">
+                                    <i class="{{ selectedIcon('clientes') }} fa-circle nav-icon"></i>
+                                    <p>Clientes</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('productos.index')
+                            <li class="nav-item">
+                                <a href="{{ route('productos.index') }}" class="nav-link {{ active('productos') }}">
+                                    <i class="{{ selectedIcon('productos') }} fa-circle nav-icon"></i>
+                                    <p>Productos</p>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item {{ open('series') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -88,9 +104,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Editar</p>
+                            <a href="{{ route('series.index') }}" class="nav-link {{ active('series') }}">
+                                <i class="{{ selectedIcon('series') }} fa-circle nav-icon"></i>
+                                <p>Series Entregadas</p>
                             </a>
                         </li>
                     </ul>

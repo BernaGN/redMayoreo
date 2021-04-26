@@ -71,7 +71,7 @@
                                                     <td>
                                                         <center>{{ $rol->name }}</center>
                                                     </td>
-                                                    @can('roles.edit')
+                                                    @can('roles.update')
                                                         <td width="10px">
                                                             <a class="btn btn-warning"
                                                                 href="{{ route('roles.edit', $rol->id) }}">

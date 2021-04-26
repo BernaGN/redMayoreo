@@ -18,12 +18,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Proveedores</h1>
+                        <h1 class="m-0">Clientes</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Catalogos</a></li>
-                            <li class="breadcrumb-item active">Proovedores</li>
+                            <li class="breadcrumb-item active">Clientes</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -37,14 +37,15 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                @can('proveedores.store')
+
+                                @can('clientes.store')
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#modal-agregar">
-                                        Agregar Proveedor
+                                        Agregar cliente
                                     </button>
                                 @endcan
                                 <div class="card-tools">
-                                    <form action="{{ route('proveedores.index') }}" method="get">
+                                    <form action="{{ route('clientes.index') }}" method="get">
                                         <div class="input-group input-group-sm" style="width: 350px;">
                                             <input type="text" name="search" class="form-control float-right"
                                                 placeholder="Ingrese el nombre o el representante"
@@ -63,7 +64,7 @@
                                 @endif
                             </div>
                             <!-- /.card-header -->
-                            @if ($proveedores->count())
+                            @if ($clientes->count())
                                 <div class="card-body table-responsive p-0">
                                     <table class="table table-hover text-nowrap">
                                         <thead>
@@ -87,71 +88,64 @@
                                                     <center>Celular</center>
                                                 </th>
                                                 <th>
-                                                    <center>Representante</center>
-                                                </th>
-                                                <th>
                                                     <center>Fecha de creacion</center>
                                                 </th>
-                                                @can('proveedores.update')
+                                                @can('clientes.update')
                                                     <th></th>
                                                 @endcan
-                                                @can('proveedores.destroy')
+                                                @can('clientes.destroy')
                                                     <th></th>
                                                 @endcan
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($proveedores as $proveedor)
+                                            @foreach ($clientes as $cliente)
                                                 <tr>
                                                     <td>
-                                                        <center><strong>{{ $proveedor->id }}</strong></center>
+                                                        <center><strong>{{ $cliente->id }}</strong></center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $proveedor->nombre }}</center>
+                                                        <center>{{ $cliente->nombre }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $proveedor->direccion }}</center>
+                                                        <center>{{ $cliente->direccion }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $proveedor->email }}</center>
+                                                        <center>{{ $cliente->email }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $proveedor->fijo }}</center>
+                                                        <center>{{ $cliente->fijo }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $proveedor->celular }}</center>
+                                                        <center>{{ $cliente->celular }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $proveedor->representante }}</center>
+                                                        <center>{{ $cliente->created_at->diffForHumans() }}</center>
                                                     </td>
-                                                    <td>
-                                                        <center>{{ $proveedor->created_at->diffForHumans() }}</center>
-                                                    </td>
-                                                    @can('proveedores.update')
+                                                    @can('clientes.update')
                                                         <td>
                                                             <button type="button" class="btn btn-warning" data-toggle="modal"
                                                                 data-target="#modal-editar"
-                                                                data-nombre="{{ $proveedor->nombre }}"
-                                                                data-direccion="{{ $proveedor->direccion }}"
-                                                                data-email="{{ $proveedor->email }}"
-                                                                data-fijo="{{ $proveedor->fijo }}"
-                                                                data-celular="{{ $proveedor->celular }}"
-                                                                data-representante="{{ $proveedor->representante }}">
-                                                                Editar
-                                                            </button>
-                                                        </td>
-                                                    @endcan
-                                                    @can('proveedores.destroy')
-                                                        <td>
-                                                            <form action="{{ route('proveedores.destroy', $proveedor->id) }}"
-                                                                method="post">
+                                                                data-nombre="{{ $cliente->nombre }}"
+                                                                data-direccion="{{ $cliente->direccion }}"
+                                                                data-email="{{ $cliente->email }}"
+                                                                data-fijo="{{ $cliente->fijo }}"
+                                                                data-celular="{{ $cliente->celular }}"">
+                                                                                                            Editar
+                                                                                                        </button>
+                                                                                                </td>
+                                                                    @endcan
+                                                                    @can('clientes.update')
+                                                                            <td>
+                                                                                <form action="
+                                                                {{ route('clientes.destroy', $cliente->id) }}" method="post">
                                                                 <button type="submit" class="btn btn-danger"
                                                                     onclick="return confirm('Quieres borrar el registro')">
                                                                     Eliminar
                                                                 </button>
                                                                 @method('DELETE')
                                                                 @csrf
-                                                            </form>
+                                                                </form>
                                                         </td>
                                                     @endcan
                                                 </tr>
@@ -177,13 +171,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Agregar Proveedor</h4>
+                    <h4 class="modal-title">Agregar cliente</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    @include('catalogos\proveedores\create')
+                    @include('catalogos\clientes\create')
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -198,15 +192,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Editar Proveedor</h4>
+                    <h4 class="modal-title">Editar cliente</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-
-                    @if ($proveedores->isNotEmpty())
-                        @include('catalogos\proveedores\edit')
+                    @if ($clientes->isNotEmpty())
+                        @include('catalogos\clientes\edit')
                     @endif
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -229,7 +222,6 @@
             var email = button.data('email')
             var fijo = button.data('fijo')
             var celular = button.data('celular')
-            var representante = button.data('representante')
 
             var modal = $(this)
             modal.find('.modal-body #nombre').val(nombre)
@@ -237,7 +229,6 @@
             modal.find('.modal-body #email').val(email)
             modal.find('.modal-body #fijo').val(fijo)
             modal.find('.modal-body #celular').val(celular)
-            modal.find('.modal-body #representante').val(representante)
         })
 
     </script>
