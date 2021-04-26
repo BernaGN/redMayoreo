@@ -1,5 +1,6 @@
 <div class="form-group">
-    <form action="{{ route('proveedores.update', $proveedor->id) }}" method="POST">
+    <form action="{{ route('proveedores.update', 'test') }}" method="POST">
+        <input type="hidden" id="id" name="id" value="">
         <label class="h5">Nombre</label>
         <input class="form-control" name="nombre" id="nombre" type="text" required>
         <label class="h5">Direccion</label>

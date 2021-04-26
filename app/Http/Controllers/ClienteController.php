@@ -48,7 +48,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cliente = Cliente::findOrFail($id);
+        $cliente = Cliente::findOrFail($request->id);
         $cliente->update($request->all());
         return back()->with('info', 'Se modifico el proveedor con exito');
     }

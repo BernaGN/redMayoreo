@@ -81,7 +81,7 @@
                                                     <td width="10px">
                                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                                             data-target="#modal-editar"
-                                                            data-num_pedido={{ $serieEntregada->num_pedido }}>
+                                                            data-num_pedido="{{ $serieEntregada->num_pedido }}">
                                                             Editar
                                                         </button>
                                                     </td>

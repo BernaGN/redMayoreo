@@ -48,7 +48,7 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $proveedor = Proveedor::findOrFail($id);
+        $proveedor = Proveedor::findOrFail($request->id);
         $proveedor->update($request->all());
         return back()->with('info', 'Se modifico el proveedor con exito');
     }

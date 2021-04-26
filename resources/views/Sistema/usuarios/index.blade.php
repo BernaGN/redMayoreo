@@ -123,7 +123,8 @@
                                                             <label>
                                                                 <button type="button" class="btn btn-warning"
                                                                     data-toggle="modal" data-target="#modal-editar"
-                                                                    data-name="{{ $usuario->name }}">
+                                                                    data-name="{{ $usuario->name }}"
+                                                                    data-id_usuario="{{ $usuario->id }}">
                                                                     Editar
                                                                 </button>
                                                         </td>
@@ -211,8 +212,10 @@
         $('#modal-editar').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Botón que activó el modal
             var name = button.data('name') // Extraer la información de atributos de datos
+            var id_usuario = button.data('id_usuario')
 
             var modal = $(this)
+            modal.find('.modal-body #id').val(id_usuario)
             modal.find('.modal-body #name').val(name)
         })
 

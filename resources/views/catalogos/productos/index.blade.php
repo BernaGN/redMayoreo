@@ -107,6 +107,7 @@
                                                         <td>
                                                             <button type="button" class="btn btn-warning" data-toggle="modal"
                                                                 data-target="#modal-editar"
+                                                                data-id_producto="{{ $producto->id }}"
                                                                 data-nombre="{{ $producto->nombre }}"
                                                                 data-clave="{{ $producto->clave }}">
                                                                 Editar
@@ -115,9 +116,7 @@
                                                     @endcan
                                                     @can('productos.destroy')
                                                         <td>
-                                                            <form
-                                                                action="
-                                                                                                                        {{ route('productos.destroy', $producto->id) }}"
+                                                            <form action="{{ route('productos.destroy', $producto->id) }}"
                                                                 method="post">
                                                                 <button type="submit" class="btn btn-danger"
                                                                     onclick="return confirm('Quieres borrar el registro')">
@@ -200,10 +199,12 @@
             var button = $(event.relatedTarget) // Botón que activó el modal
             var nombre = button.data('nombre') // Extraer la información de atributos de datos
             var clave = button.data('clave')
+            var id_producto = button.data('id_producto')
 
             var modal = $(this)
             modal.find('.modal-body #nombre').val(nombre)
             modal.find('.modal-body #clave').val(clave)
+            modal.find('.modal-body #id').val(id_producto)
         })
 
     </script>

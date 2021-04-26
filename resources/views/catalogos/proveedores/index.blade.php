@@ -131,6 +131,7 @@
                                                         <td>
                                                             <button type="button" class="btn btn-warning" data-toggle="modal"
                                                                 data-target="#modal-editar"
+                                                                data-id_proveedor="{{ $proveedor->id }}"
                                                                 data-nombre="{{ $proveedor->nombre }}"
                                                                 data-direccion="{{ $proveedor->direccion }}"
                                                                 data-email="{{ $proveedor->email }}"
@@ -225,6 +226,7 @@
     <script>
         $('#modal-editar').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Botón que activó el modal
+            var id_proveedor = button.data('id_proveedor')
             var nombre = button.data('nombre') // Extraer la información de atributos de datos
             var direccion = button.data('direccion')
             var email = button.data('email')
@@ -233,6 +235,7 @@
             var representante = button.data('representante')
 
             var modal = $(this)
+            modal.find('.modal-body #id').val(id_proveedor)
             modal.find('.modal-body #nombre').val(nombre)
             modal.find('.modal-body #direccion').val(direccion)
             modal.find('.modal-body #email').val(email)

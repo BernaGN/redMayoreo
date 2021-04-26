@@ -50,7 +50,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $producto = Producto::findOrFail($id);
+        $producto = Producto::findOrFail($request->id);
         $producto->update($request->all());
         return back()->with('info', 'Se modifico el proveedor con exito');
     }

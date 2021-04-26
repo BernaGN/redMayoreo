@@ -126,18 +126,19 @@
                                                         <td>
                                                             <button type="button" class="btn btn-warning" data-toggle="modal"
                                                                 data-target="#modal-editar"
+                                                                data-id_cliente="{{ $cliente->id }}"
                                                                 data-nombre="{{ $cliente->nombre }}"
                                                                 data-direccion="{{ $cliente->direccion }}"
                                                                 data-email="{{ $cliente->email }}"
                                                                 data-fijo="{{ $cliente->fijo }}"
                                                                 data-celular="{{ $cliente->celular }}"">
-                                                                                                                    Editar
-                                                                                                                </button>
-                                                                                                        </td>
-                                                                        @endcan
-                                                                        @can('clientes.update')
-                                                                                    <td>
-                                                                                        <form action="
+                                                                                                                                                    Editar
+                                                                                                                                                </button>
+                                                                                                                                        </td>
+                                                                                        @endcan
+                                                                                        @can('clientes.update')
+                                                                                                                    <td>
+                                                                                                                        <form action="
                                                                 {{ route('clientes.destroy', $cliente->id) }}" method="post">
                                                                 <button type="submit" class="btn btn-danger"
                                                                     onclick="return confirm('Quieres borrar el registro')">
@@ -218,6 +219,7 @@
     <script>
         $('#modal-editar').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Botón que activó el modal
+            var id_cliente = button.data('id_cliente')
             var nombre = button.data('nombre') // Extraer la información de atributos de datos
             var direccion = button.data('direccion')
             var email = button.data('email')
@@ -225,6 +227,7 @@
             var celular = button.data('celular')
 
             var modal = $(this)
+            modal.find('.modal-body #id').val(id_cliente)
             modal.find('.modal-body #nombre').val(nombre)
             modal.find('.modal-body #direccion').val(direccion)
             modal.find('.modal-body #email').val(email)

@@ -60,7 +60,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($request->id);
         $user->update(['name' => $request['name']]);
         $user->roles()->sync($request->roles);
         return back()->with('info', 'El registro se modifico correctamente');

@@ -1,5 +1,6 @@
 <div class="form-group">
-    {!! Form::model($usuario, ['route' => ['usuarios.update', $usuario->id], 'method' => 'put']) !!}
+    {!! Form::model($usuario, ['route' => ['usuarios.update', 'test'], 'method' => 'put']) !!}
+    <input type="hidden" id="id" name="id" value="">
     <label class="h5">Nombre</label>
     <input class="form-control" name="name" id="name" readonly>
     <h2 class="h5">Lista de roles</h2>
