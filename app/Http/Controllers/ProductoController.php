@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+    public function __construct() {
+        $this->middleware('can:productos.index')->only('index');
+        $this->middleware('can:productos.store')->only('store');
+        $this->middleware('can:productos.update')->only('update');
+        $this->middleware('can:productos.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

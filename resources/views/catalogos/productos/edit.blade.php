@@ -5,11 +5,11 @@
         <label class="h5">Clave</label>
         <input class="form-control" name="clave" id="clave" type="text" required>
         <label class="h5">Proveedor</label>
-        <select name="proveedor_id">
+        <select name="proveedor_id" class="form-control">
             <option value=""></option>
             @foreach ($proveedores as $proveedor)
                 <option value="{{ $proveedor->id }}"
-                    {{ $proveedor->nombre == $producto->proveedor->nombre ? 'selected' : '' }}>
+                    {{ $proveedor->id == $producto->proveedor->id ? 'selected' : '' }}>
                     {{ $proveedor->nombre }}
                 </option>
             @endforeach

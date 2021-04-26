@@ -9,6 +9,9 @@ class ProveedorController extends Controller
 {
     public function __construct() {
         $this->middleware('can:proveedores.index')->only('index');
+        $this->middleware('can:proveedores.store')->only('store');
+        $this->middleware('can:proveedores.update')->only('update');
+        $this->middleware('can:proveedores.destroy')->only('destroy');
     }
     /**
      * Display a listing of the resource.

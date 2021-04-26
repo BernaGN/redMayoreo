@@ -79,10 +79,11 @@
                                                         </center>
                                                     </td>
                                                     <td width="10px">
-                                                        <a class="btn btn-warning"
-                                                            href="{{ route('series.update', $serieEntregada->id) }}">
-                                                            Editar Rol
-                                                        </a>
+                                                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                            data-target="#modal-editar"
+                                                            data-num_pedido={{ $serieEntregada->num_pedido }}>
+                                                            Editar
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -104,6 +105,63 @@
 
         </div>
     </div>
+    <div class="modal fade" id="modal-agregar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Agregar Series</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('Procesos.Series.create')
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <div class="modal fade" id="modal-editar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Series</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if ($proveedores->isNotEmpty())
+                        @include('Procesos.Series.edit')
+                    @endif
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+@endsection
+
+@section('modal')
+    <script>
+        $('#modal-editar').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Botón que activó el modal
+            var num_pedido = button.data('num_pedido') // Extraer la información de atributos de datos
+
+            var modal = $(this)
+            modal.find('.modal-body #num_pedido').val(num_pedido)
+        })
+
+    </script>
 @endsection
 
 @section('js')
