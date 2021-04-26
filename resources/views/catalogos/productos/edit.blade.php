@@ -17,5 +17,6 @@
         <br>
         <button type="submit" class="btn btn-primary mt-2">Guardar</button>
         @csrf
+        @method('PUT')
     </form>
 </div>
