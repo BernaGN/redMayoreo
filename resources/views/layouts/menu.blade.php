@@ -35,7 +35,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('parametros') }}" class="nav-link {{ active('parametros') }}">
-                                <i class="{{ selectedIcon('usuarios') }} fa-circle nav-icon"></i>
+                                <i class="{{ selectedIcon('parametros') }} fa-circle nav-icon"></i>
                                 <p>Parametros</p>
                             </a>
                         </li>
