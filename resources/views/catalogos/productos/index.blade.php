@@ -107,7 +107,7 @@
                                                         <td>
                                                             <a class="btn btn-warning"
                                                                 href="{{ route('productos.edit', $producto->id) }}">
-                                                                Editar Rol
+                                                                Editar
                                                             </a>
                                                         </td>
                                                     @endcan

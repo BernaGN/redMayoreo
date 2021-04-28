@@ -13,11 +13,11 @@
         <select class="form-control" name="producto_id">
             <option value=""></option>
             @foreach ($productos as $producto)
-                <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
+                <option value="{{ $producto->id }}">{{ $producto->clave }}</option>
             @endforeach
         </select>
         <label class="h5">Series</label>
-        <textarea name="series" cols="30" rows="10" class="form-control"></textarea>
+        <textarea name="nombre" cols="30" rows="10" class="form-control"></textarea>
         <button type="submit" class="btn btn-primary mt-2">Guardar</button>
         @csrf
     </form>

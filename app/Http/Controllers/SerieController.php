@@ -20,23 +20,10 @@ class SerieController extends Controller
     public function index()
     {
         return view('Procesos.Series.index', [
-            'proveedores' => Proveedor::all(),
             'clientes' => Cliente::all(),
             'productos' => Producto::all(),
-            'numSerie' => NumSerie::all(),
             'serieEntregadas' => SerieEntregada::paginate(),
-            'detalleSerieEntregada' => DetalleSerieEntregada::all(),
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -47,18 +34,22 @@ class SerieController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $series = explode("\r\n", $request->nombre);
+        SerieEntregada::create([
+            'num_pedido' => $request->num_pedido,
+            'cliente_id' => $request->cliente_id,
+        ]);
+        $serie_id = SerieEntregada::select('id')->latest('id')->first();
+        foreach($series as $serie) {
+            NumSerie::create(['nombre' => $serie]);
+            $num = NumSerie::select('id')->latest('id')->first();
+            DetalleSerieEntregada::create([
+                'serie_entregada_id' => $serie_id->id,
+                'producto_id' => $request->producto_id,
+                'serie_id' => $num->id,
+            ]);
+        }
+        return back()->with('info', 'La serie se agrego con exito');
     }
 
     /**
@@ -69,7 +60,12 @@ class SerieController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('Procesos.Series.edit', [
+            'clientes' => Cliente::all(),
+            'productos' => Producto::all(),
+            'series' => NumSerie::all(),
+            'serieEntregada' => SerieEntregada::findOrFail($id),
+        ]);
     }
 
     /**
@@ -92,6 +88,7 @@ class SerieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SerieEntregada::findOrFail($id)->delete();
+        return back()->with('info', 'El registro se elimino correctamente');
     }
 }

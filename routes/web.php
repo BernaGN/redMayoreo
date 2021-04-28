@@ -38,6 +38,6 @@ Route::resource('/clientes', App\Http\Controllers\ClienteController::class)->exc
 Route::resource('/productos', App\Http\Controllers\ProductoController::class)->except('create', 'show');
 
 //Procesos
-Route::resource('/series', App\Http\Controllers\SerieController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('/series', App\Http\Controllers\SerieController::class)->except('create', 'show');
 
 //Reportes

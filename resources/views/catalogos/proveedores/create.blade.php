@@ -7,7 +7,7 @@
         <label class="h5">Email</label>
         <input class="form-control" name="email" id="email" type="email" required>
         <label class="h5">Fijo</label>
-        <input class="form-control" name="fijo" id="fijo" type="text" required>
+        <input class="form-control" name="fijo" id="fijo" type="text">
         <label class="h5">Celular</label>
         <input class="form-control" name="celular" id="celular" type="text" required>
         <label class="h5">Representante</label>

@@ -34,7 +34,6 @@
         @include('layouts.menu')
         @yield('contenido')
         @yield('js')
-        @yield('modal')
 
         <!-- Main Footer -->
         <footer class="main-footer">
