@@ -10,7 +10,7 @@ class ProveedorController extends Controller
     public function __construct() {
         $this->middleware('can:proveedores.index')->only('index');
         $this->middleware('can:proveedores.store')->only('store');
-        $this->middleware('can:proveedores.update')->only('update');
+        $this->middleware('can:proveedores.update')->only('edit', 'update');
         $this->middleware('can:proveedores.destroy')->only('destroy');
     }
     /**
@@ -40,6 +40,19 @@ class ProveedorController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Proveedor  $proveedor
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('catalogos.proveedores.edit', [
+            'proveedor' => Proveedor::findOrFail($id),
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,7 +61,7 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $proveedor = Proveedor::findOrFail($request->id);
+        $proveedor = Proveedor::findOrFail($id);
         $proveedor->update($request->all());
         return back()->with('info', 'Se modifico el proveedor con exito');
     }

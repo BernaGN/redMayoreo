@@ -11,7 +11,7 @@ class ProductoController extends Controller
     public function __construct() {
         $this->middleware('can:productos.index')->only('index');
         $this->middleware('can:productos.store')->only('store');
-        $this->middleware('can:productos.update')->only('update');
+        $this->middleware('can:productos.update')->only('edit', 'update');
         $this->middleware('can:productos.destroy')->only('destroy');
     }
     /**
@@ -42,6 +42,20 @@ class ProductoController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Producto  $producto
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('catalogos.productos.edit', [
+            'producto' => Producto::findOrFail($id),
+            'proveedores' => Proveedor::select('id', 'nombre')->get(),
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,7 +64,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $producto = Producto::findOrFail($request->id);
+        $producto = Producto::findOrFail($id);
         $producto->update($request->all());
         return back()->with('info', 'Se modifico el proveedor con exito');
     }

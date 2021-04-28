@@ -11,9 +11,10 @@ class UsuarioController extends Controller
     public function __construct() {
         $this->middleware('can:usuarios.index')->only('index');
         $this->middleware('can:usuarios.store')->only('store');
-        $this->middleware('can:usuarios.update')->only('update');
+        $this->middleware('can:usuarios.update')->only('edit', 'update');
         $this->middleware('can:usuarios.destroy')->only('destroy');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,6 +53,20 @@ class UsuarioController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('sistema.usuarios.edit', [
+            'usuario' => User::findOrFail($id),
+            'roles' => Role::all(),
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -60,7 +75,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail($id);
         $user->update(['name' => $request['name']]);
         $user->roles()->sync($request->roles);
         return back()->with('info', 'El registro se modifico correctamente');

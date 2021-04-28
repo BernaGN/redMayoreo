@@ -129,17 +129,10 @@
                                                     </td>
                                                     @can('proveedores.update')
                                                         <td>
-                                                            <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                                data-target="#modal-editar"
-                                                                data-id_proveedor="{{ $proveedor->id }}"
-                                                                data-nombre="{{ $proveedor->nombre }}"
-                                                                data-direccion="{{ $proveedor->direccion }}"
-                                                                data-email="{{ $proveedor->email }}"
-                                                                data-fijo="{{ $proveedor->fijo }}"
-                                                                data-celular="{{ $proveedor->celular }}"
-                                                                data-representante="{{ $proveedor->representante }}">
-                                                                Editar
-                                                            </button>
+                                                            <a class="btn btn-warning"
+                                                                href="{{ route('proveedores.edit', $proveedor->id) }}">
+                                                                Editar Rol
+                                                            </a>
                                                         </td>
                                                     @endcan
                                                     @can('proveedores.destroy')
@@ -195,56 +188,6 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
-    <div class="modal fade" id="modal-editar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Editar Proveedor</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    @if ($proveedores->isNotEmpty())
-                        @include('catalogos\proveedores\edit')
-                    @endif
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-@endsection
-
-@section('modal')
-    <script>
-        $('#modal-editar').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Botón que activó el modal
-            var id_proveedor = button.data('id_proveedor')
-            var nombre = button.data('nombre') // Extraer la información de atributos de datos
-            var direccion = button.data('direccion')
-            var email = button.data('email')
-            var fijo = button.data('fijo')
-            var celular = button.data('celular')
-            var representante = button.data('representante')
-
-            var modal = $(this)
-            modal.find('.modal-body #id').val(id_proveedor)
-            modal.find('.modal-body #nombre').val(nombre)
-            modal.find('.modal-body #direccion').val(direccion)
-            modal.find('.modal-body #email').val(email)
-            modal.find('.modal-body #fijo').val(fijo)
-            modal.find('.modal-body #celular').val(celular)
-            modal.find('.modal-body #representante').val(representante)
-        })
-
-    </script>
 @endsection
 
 @section('js')

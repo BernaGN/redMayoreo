@@ -10,7 +10,7 @@ class ClienteController extends Controller
     public function __construct() {
         $this->middleware('can:clientes.index')->only('index');
         $this->middleware('can:clientes.store')->only('store');
-        $this->middleware('can:clientes.update')->only('update');
+        $this->middleware('can:clientes.update')->only('edit', 'update');
         $this->middleware('can:clientes.destroy')->only('destroy');
     }
     /**
@@ -40,6 +40,19 @@ class ClienteController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\cliente  $cliente
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('catalogos.clientes.edit', [
+            'cliente' => Cliente::findOrFail($id),
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,7 +61,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cliente = Cliente::findOrFail($request->id);
+        $cliente = Cliente::findOrFail($id);
         $cliente->update($request->all());
         return back()->with('info', 'Se modifico el proveedor con exito');
     }

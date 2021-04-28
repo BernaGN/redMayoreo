@@ -29,13 +29,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //Sistema
 Route::get('/parametros', [ParametroController::class, 'index'])->name('parametros');
-Route::resource('/usuarios', UsuarioController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('/usuarios', UsuarioController::class)->except('create', 'show');
 Route::resource('/roles', RolController::class)->only(['index', 'store', 'edit', 'update']);
 
 //Catalogos
-Route::resource('/proveedores', App\Http\Controllers\ProveedorController::class)->only(['index', 'store', 'update', 'destroy']);
-Route::resource('/clientes', App\Http\Controllers\ClienteController::class)->only(['index', 'store', 'update', 'destroy']);
-Route::resource('/productos', App\Http\Controllers\ProductoController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('/proveedores', App\Http\Controllers\ProveedorController::class)->except('create', 'show');
+Route::resource('/clientes', App\Http\Controllers\ClienteController::class)->except('create', 'show');
+Route::resource('/productos', App\Http\Controllers\ProductoController::class)->except('create', 'show');
 
 //Procesos
 Route::resource('/series', App\Http\Controllers\SerieController::class)->only(['index', 'store', 'update', 'destroy']);

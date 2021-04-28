@@ -120,13 +120,10 @@
                                                     </td>
                                                     @can('usuarios.update')
                                                         <td>
-                                                            <label>
-                                                                <button type="button" class="btn btn-warning"
-                                                                    data-toggle="modal" data-target="#modal-editar"
-                                                                    data-name="{{ $usuario->name }}"
-                                                                    data-id_usuario="{{ $usuario->id }}">
-                                                                    Editar
-                                                                </button>
+                                                            <a class="btn btn-warning"
+                                                                href="{{ route('usuarios.edit', $usuario->id) }}">
+                                                                Editar Rol
+                                                            </a>
                                                         </td>
                                                     @endcan
                                                     @can('usuarios.destroy')
@@ -140,7 +137,6 @@
                                                                 @method('DELETE')
                                                                 @csrf
                                                             </form>
-                                                            </label>
                                                         </td>
                                                     @endcan
                                                 </tr>
@@ -183,43 +179,6 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
-    <div class="modal fade" id="modal-editar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modificar Usuario</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @include('Sistema\usuarios\edit')
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-@endsection
-
-@section('modal')
-    <script>
-        $('#modal-editar').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Botón que activó el modal
-            var name = button.data('name') // Extraer la información de atributos de datos
-            var id_usuario = button.data('id_usuario')
-
-            var modal = $(this)
-            modal.find('.modal-body #id').val(id_usuario)
-            modal.find('.modal-body #name').val(name)
-        })
-
-    </script>
 @endsection
 
 @section('js')

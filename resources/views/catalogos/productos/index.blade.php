@@ -105,13 +105,10 @@
                                                     </td>
                                                     @can('productos.update')
                                                         <td>
-                                                            <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                                data-target="#modal-editar"
-                                                                data-id_producto="{{ $producto->id }}"
-                                                                data-nombre="{{ $producto->nombre }}"
-                                                                data-clave="{{ $producto->clave }}">
-                                                                Editar
-                                                            </button>
+                                                            <a class="btn btn-warning"
+                                                                href="{{ route('productos.edit', $producto->id) }}">
+                                                                Editar Rol
+                                                            </a>
                                                         </td>
                                                     @endcan
                                                     @can('productos.destroy')
@@ -168,46 +165,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <div class="modal fade" id="modal-editar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Editar producto</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @if ($productos->isNotEmpty())
-                        @include('catalogos\productos\edit')
-                    @endif
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-@endsection
-
-@section('modal')
-    <script>
-        $('#modal-editar').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Botón que activó el modal
-            var nombre = button.data('nombre') // Extraer la información de atributos de datos
-            var clave = button.data('clave')
-            var id_producto = button.data('id_producto')
-
-            var modal = $(this)
-            modal.find('.modal-body #nombre').val(nombre)
-            modal.find('.modal-body #clave').val(clave)
-            modal.find('.modal-body #id').val(id_producto)
-        })
-
-    </script>
 @endsection
 
 @section('js')

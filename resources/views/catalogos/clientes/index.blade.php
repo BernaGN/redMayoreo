@@ -124,29 +124,23 @@
                                                     </td>
                                                     @can('clientes.update')
                                                         <td>
-                                                            <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                                data-target="#modal-editar"
-                                                                data-id_cliente="{{ $cliente->id }}"
-                                                                data-nombre="{{ $cliente->nombre }}"
-                                                                data-direccion="{{ $cliente->direccion }}"
-                                                                data-email="{{ $cliente->email }}"
-                                                                data-fijo="{{ $cliente->fijo }}"
-                                                                data-celular="{{ $cliente->celular }}"">
-                                                                                                                                                    Editar
-                                                                                                                                                </button>
-                                                                                                                                        </td>
-                                                                                        @endcan
-                                                                                        @can('clientes.update')
-                                                                                                                    <td>
-                                                                                                                        <form action="
-                                                                {{ route('clientes.destroy', $cliente->id) }}" method="post">
+                                                            <a class="btn btn-warning"
+                                                                href="{{ route('clientes.edit', $cliente->id) }}">
+                                                                Editar Rol
+                                                            </a>
+                                                        </td>
+                                                    @endcan
+                                                    @can('clientes.update')
+                                                        <td>
+                                                            <form action="{{ route('clientes.destroy', $cliente->id) }}"
+                                                                method="post">
                                                                 <button type="submit" class="btn btn-danger"
                                                                     onclick="return confirm('Quieres borrar el registro')">
                                                                     Eliminar
                                                                 </button>
                                                                 @method('DELETE')
                                                                 @csrf
-                                                                </form>
+                                                            </form>
                                                         </td>
                                                     @endcan
                                                 </tr>
@@ -190,52 +184,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <div class="modal fade" id="modal-editar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Editar cliente</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @if ($clientes->isNotEmpty())
-                        @include('catalogos\clientes\edit')
-                    @endif
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-@endsection
-
-@section('modal')
-    <script>
-        $('#modal-editar').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Botón que activó el modal
-            var id_cliente = button.data('id_cliente')
-            var nombre = button.data('nombre') // Extraer la información de atributos de datos
-            var direccion = button.data('direccion')
-            var email = button.data('email')
-            var fijo = button.data('fijo')
-            var celular = button.data('celular')
-
-            var modal = $(this)
-            modal.find('.modal-body #id').val(id_cliente)
-            modal.find('.modal-body #nombre').val(nombre)
-            modal.find('.modal-body #direccion').val(direccion)
-            modal.find('.modal-body #email').val(email)
-            modal.find('.modal-body #fijo').val(fijo)
-            modal.find('.modal-body #celular').val(celular)
-        })
-
-    </script>
 @endsection
 
 @section('js')
