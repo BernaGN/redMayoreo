@@ -62,8 +62,8 @@
                                                 <th>
                                                     <center>Clave</center>
                                                 </th>
-                                                <th>
-                                                </th>
+                                                <th></th>
+                                                <th></th>
                                                 <th></th>
                                         </thead>
                                         <tbody>
@@ -97,6 +97,10 @@
                                                             @method('DELETE')
                                                             @csrf
                                                         </form>
+                                                    </td>
+                                                    <td><a class="btn btn-info"
+                                                            href="{{ route('seriesPdf', $serieEntregada->num_pedido) }}">Generar
+                                                            Reporte</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

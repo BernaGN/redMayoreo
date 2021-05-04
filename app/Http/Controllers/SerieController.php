@@ -92,4 +92,17 @@ class SerieController extends Controller
         SerieEntregada::findOrFail($id)->delete();
         return back()->with('info', 'El registro se elimino correctamente');
     }
+
+    public function pdf(Request $request, $id)
+    {
+        $serieEntregada = SerieEntregada::where('num_pedido', $id)->first();
+        $pdf = \PDF::loadView('pdf.series.index', [
+            'clientes' => Cliente::select('id', 'nombre')->get(),
+            'productos' => Producto::select('id', 'clave')->get(),
+            'series' => DetalleSerieEntregada::where('serie_entregada_id', $serieEntregada->id)->get(),
+            'serieEntregada' => $serieEntregada,
+        ]);
+        return $pdf->download('Series-'.$serieEntregada->num_pedido.'.pdf');
+    }
+
 }

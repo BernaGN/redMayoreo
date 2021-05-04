@@ -39,5 +39,6 @@ Route::resource('/productos', App\Http\Controllers\ProductoController::class)->e
 
 //Procesos
 Route::resource('/series', App\Http\Controllers\SerieController::class)->except('create', 'show');
+Route::get('/seriesPdf/{id}', [App\Http\Controllers\SerieController::class, 'pdf'])->name('seriesPdf');
 
 //Reportes

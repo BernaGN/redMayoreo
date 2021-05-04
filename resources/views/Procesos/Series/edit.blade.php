@@ -67,10 +67,10 @@
                                         </select>
                                         <label class="h5">Series</label>
                                         <textarea name="nombre" cols="30" rows="10" class="form-control">
-                                            @foreach ($series as $serie)
-                                                {{ $serie->numSeries->nombre }}
-                                            @endforeach
-                                        </textarea>
+                                                @foreach ($series as $serie)
+                                                    {{ $serie->numSeries->nombre }}
+                                                @endforeach
+                                            </textarea>
                                         <button type="submit" class="btn btn-primary mt-2">Guardar</button>
                                         @csrf
                                         @method('PUT')
