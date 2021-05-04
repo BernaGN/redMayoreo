@@ -18,4 +18,9 @@ class NumSerie extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    public function detalleSerieEntregada()
+    {
+        return $this->hasMany(DetalleSerieEntregada::class, 'serie_id');
+    }
 }

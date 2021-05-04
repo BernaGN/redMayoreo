@@ -1,7 +1,8 @@
 <div class="form-group">
     <form action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
         <label class="h5">Nombre</label>
-        <input class="form-control" name="name" type="text" required>
+        <input class="form-control" name="name" type="text" pattern="[A-Za-z]{5,25}"
+            title="El nombre de usuario solo debe contener letras" required>
         <label class="h5">Email</label>
         <input class="form-control" name="email" type="text" required>
         <label class="h5">Contraseña</label>

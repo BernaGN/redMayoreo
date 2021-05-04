@@ -64,6 +64,7 @@
                                                 </th>
                                                 <th>
                                                 </th>
+                                                <th></th>
                                         </thead>
                                         <tbody>
                                             @foreach ($serieEntregadas as $serieEntregada)
@@ -85,6 +86,17 @@
                                                             href="{{ route('series.edit', $serieEntregada->id) }}">
                                                             Editar
                                                         </a>
+                                                    </td>
+                                                    <td>
+                                                        <form action="{{ route('series.destroy', $serieEntregada->id) }}"
+                                                            method="post">
+                                                            <button type="submit" class="btn btn-danger"
+                                                                onclick="return confirm('Quieres borrar el registro')">
+                                                                Eliminar
+                                                            </button>
+                                                            @method('DELETE')
+                                                            @csrf
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

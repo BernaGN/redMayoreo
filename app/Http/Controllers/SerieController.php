@@ -60,11 +60,12 @@ class SerieController extends Controller
      */
     public function edit($id)
     {
+        $serieEntregada = SerieEntregada::findOrFail($id);
         return view('Procesos.Series.edit', [
-            'clientes' => Cliente::all(),
-            'productos' => Producto::all(),
-            'series' => NumSerie::all(),
-            'serieEntregada' => SerieEntregada::findOrFail($id),
+            'clientes' => Cliente::select('id', 'nombre')->get(),
+            'productos' => Producto::select('id', 'clave')->get(),
+            'series' => DetalleSerieEntregada::where('serie_entregada_id', $serieEntregada->id)->get(),
+            'serieEntregada' => $serieEntregada,
         ]);
     }
 

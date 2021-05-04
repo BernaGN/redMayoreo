@@ -26,6 +26,11 @@ class DetalleSerieEntregada extends Model
         return $this->hasMany(DetalleSerieEntregada::class);
     }
 
+    public function numSeries()
+    {
+        return $this->belongsTo(NumSerie::class, 'serie_id');
+    }
+
     public function producto()
     {
         return $this->belongsTo(Producto::class);
