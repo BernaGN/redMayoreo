@@ -78,7 +78,6 @@
                                                 <th>
                                                     <center>Clave</center>
                                                 </th>
-                                                <th></th>
                                                 @can('series.destroy')
                                                     <th></th>
                                                 @endcan
@@ -98,9 +97,6 @@
                                                         <center>
                                                             {{ $serieEntregada->detalleSerieEntregadas[0]->producto->clave }}
                                                         </center>
-                                                    </td>
-                                                    <td><a class="btn btn-link"
-                                                            href="{{ route('series.show', $serieEntregada->id) }}">Ver</a>
                                                     </td>
                                                     @can('series.index')
                                                         <td>

@@ -39,7 +39,7 @@ Route::resource('/clientes', App\Http\Controllers\ClienteController::class)->exc
 Route::resource('/productos', App\Http\Controllers\ProductoController::class)->except('create', 'show');
 
 //Procesos
-Route::resource('/series', App\Http\Controllers\SerieController::class)->except('create', 'show');
+Route::resource('/series', App\Http\Controllers\SerieController::class)->except('create', 'edit');
 
 //Reportes
 Route::get('/reporte-series-pdf/{id?}', [App\Http\Controllers\ReporteSerieController::class, 'pdf'])->name('reporte-series-pdf');

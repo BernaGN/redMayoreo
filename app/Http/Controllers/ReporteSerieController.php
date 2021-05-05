@@ -15,7 +15,7 @@ class ReporteSerieController extends Controller
 
     public function pdf(Request $request)
     {
-        if(SerieEntregada::count() == 0);
+        if(SerieEntregada::count() == 0)
             return redirect()->route('series.index');
         if($request->interesado == 'fecha') {
             $deste = date("Y/d/m H:i", strtotime($request->desde));

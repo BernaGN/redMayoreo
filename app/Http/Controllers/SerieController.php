@@ -66,10 +66,10 @@ class SerieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function show($id)
     {
         $serieEntregada = SerieEntregada::findOrFail($id);
-        return view('Procesos.Series.edit', [
+        return view('Procesos.Series.ver', [
             'clientes' => Cliente::select('id', 'nombre')->get(),
             'productos' => Producto::select('id', 'clave')->get(),
             'series' => DetalleSerieEntregada::where('serie_entregada_id', $serieEntregada->id)->get(),
