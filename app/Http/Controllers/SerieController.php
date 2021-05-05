@@ -15,7 +15,6 @@ class SerieController extends Controller
     public function __construct() {
         $this->middleware('can:series.index')->only('index');
         $this->middleware('can:series.store')->only('store');
-        $this->middleware('can:series.update')->only('edit', 'update');
         $this->middleware('can:series.destroy')->only('destroy');
     }
     /**
@@ -75,18 +74,6 @@ class SerieController extends Controller
             'series' => DetalleSerieEntregada::where('serie_entregada_id', $serieEntregada->id)->get(),
             'serieEntregada' => $serieEntregada,
         ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
