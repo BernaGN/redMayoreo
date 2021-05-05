@@ -20,6 +20,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SerieController;
+use App\Http\Controllers\ReporteSerieController;
 
 Auth::routes(["register" => false]);
 
@@ -39,6 +40,6 @@ Route::resource('/productos', App\Http\Controllers\ProductoController::class)->e
 
 //Procesos
 Route::resource('/series', App\Http\Controllers\SerieController::class)->except('create', 'show');
-Route::get('/seriesPdf/{id}', [App\Http\Controllers\SerieController::class, 'pdf'])->name('seriesPdf');
 
 //Reportes
+Route::get('/reporte-series-pdf/{id?}', [App\Http\Controllers\ReporteSerieController::class, 'pdf'])->name('reporte-series-pdf');

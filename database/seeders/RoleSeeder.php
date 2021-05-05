@@ -44,5 +44,10 @@ class RoleSeeder extends Seeder
         $permission = Permission::create(['name' => 'productos.store', 'description' => 'Agregar Productos'])->assignRole($admin);
         $permission = Permission::create(['name' => 'productos.update', 'description' => 'Modificar Productos'])->assignRole($admin);
         $permission = Permission::create(['name' => 'productos.destroy', 'description' => 'Eliminar Productos'])->assignRole($admin);
+
+        $permission = Permission::create(['name' => 'series.index', 'description' => 'Ver Lista de Series Entregadas'])->syncRoles([$admin, $operador]);
+        $permission = Permission::create(['name' => 'series.store', 'description' => 'Agregar Serie'])->assignRole($admin);
+        $permission = Permission::create(['name' => 'series.update', 'description' => 'Modificar Serie'])->assignRole($admin);
+        $permission = Permission::create(['name' => 'series.destroy', 'description' => 'Eliminar Serie'])->assignRole($admin);
     }
 }

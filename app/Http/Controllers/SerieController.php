@@ -12,17 +12,25 @@ use App\Models\DetalleSerieEntregada;
 
 class SerieController extends Controller
 {
+    public function __construct() {
+        $this->middleware('can:series.index')->only('index');
+        $this->middleware('can:series.store')->only('store');
+        $this->middleware('can:series.update')->only('edit', 'update');
+        $this->middleware('can:series.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $sql = trim($request->get('search'));
         return view('Procesos.Series.index', [
             'clientes' => Cliente::all(),
             'productos' => Producto::all(),
-            'serieEntregadas' => SerieEntregada::paginate(),
+            'serieEntregadas' => SerieEntregada::searchByAndPaginate($sql),
+            'texto' => $sql,
         ]);
     }
 
@@ -91,18 +99,6 @@ class SerieController extends Controller
     {
         SerieEntregada::findOrFail($id)->delete();
         return back()->with('info', 'El registro se elimino correctamente');
-    }
-
-    public function pdf(Request $request, $id)
-    {
-        $serieEntregada = SerieEntregada::where('num_pedido', $id)->first();
-        $pdf = \PDF::loadView('pdf.series.index', [
-            'clientes' => Cliente::select('id', 'nombre')->get(),
-            'productos' => Producto::select('id', 'clave')->get(),
-            'series' => DetalleSerieEntregada::where('serie_entregada_id', $serieEntregada->id)->get(),
-            'serieEntregada' => $serieEntregada,
-        ]);
-        return $pdf->download('Series-'.$serieEntregada->num_pedido.'.pdf');
     }
 
 }

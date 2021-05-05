@@ -29,4 +29,9 @@ class SerieEntregada extends Model
     {
         return $this->hasMany(DetalleSerieEntregada::class);
     }
+
+    public function scopeSearchByAndPaginate($query, $nombre = '', $pagination = 25) {
+        return $query->where('num_pedido', 'LIKE', "%$nombre%")
+                    ->paginate($pagination);
+    }
 }

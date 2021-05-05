@@ -43,6 +43,23 @@
                                         Agregar Serie
                                     </button>
                                 @endif
+                                @can('series.store')
+                                    <div class="card-tools">
+                                        <form action="{{ route('series.index') }}" method="get">
+                                            <div class="input-group input-group-sm" style="width: 350px;">
+                                                <input type="text" name="search" class="form-control float-right"
+                                                    placeholder="Ingrese el nombre o correo de un usuario"
+                                                    value="{{ $texto }}">
+
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-default">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @endcan
                                 @if (session('info'))
                                     <div class="alert alert-success"><strong>{{ session('info') }}</strong></div>
                                 @endif
@@ -62,8 +79,9 @@
                                                 <th>
                                                     <center>Clave</center>
                                                 </th>
-                                                <th></th>
-                                                <th></th>
+                                                @can('series.destroy')
+                                                    <th></th>
+                                                @endcan
                                                 <th></th>
                                         </thead>
                                         <tbody>
@@ -81,25 +99,21 @@
                                                             {{ $serieEntregada->detalleSerieEntregadas[0]->producto->clave }}
                                                         </center>
                                                     </td>
-                                                    <td width="10px">
-                                                        <a class="btn btn-warning"
-                                                            href="{{ route('series.edit', $serieEntregada->id) }}">
-                                                            Editar
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <form action="{{ route('series.destroy', $serieEntregada->id) }}"
-                                                            method="post">
-                                                            <button type="submit" class="btn btn-danger"
-                                                                onclick="return confirm('Quieres borrar el registro')">
-                                                                Eliminar
-                                                            </button>
-                                                            @method('DELETE')
-                                                            @csrf
-                                                        </form>
-                                                    </td>
+                                                    @can('series.index')
+                                                        <td>
+                                                            <form action="{{ route('series.destroy', $serieEntregada->id) }}"
+                                                                method="post">
+                                                                <button type="submit" class="btn btn-danger"
+                                                                    onclick="return confirm('Quieres borrar el registro')">
+                                                                    Eliminar
+                                                                </button>
+                                                                @method('DELETE')
+                                                                @csrf
+                                                            </form>
+                                                        </td>
+                                                    @endcan
                                                     <td><a class="btn btn-info"
-                                                            href="{{ route('seriesPdf', $serieEntregada->num_pedido) }}">Generar
+                                                            href="{{ route('reporte-series-pdf', $serieEntregada->num_pedido) }}">Generar
                                                             Reporte</a>
                                                     </td>
                                                 </tr>

@@ -103,12 +103,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('series.index') }}" class="nav-link {{ active('series') }}">
-                                <i class="{{ selectedIcon('series') }} fa-circle nav-icon"></i>
-                                <p>Series Entregadas</p>
-                            </a>
-                        </li>
+                        @can('series.index')
+                            <li class="nav-item">
+                                <a href="{{ route('series.index') }}" class="nav-link {{ active('series') }}">
+                                    <i class="{{ selectedIcon('series') }} fa-circle nav-icon"></i>
+                                    <p>Series Entregadas</p>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
@@ -121,12 +123,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Imprimir</p>
-                            </a>
-                        </li>
+                        @can('series.index')
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-buscarSerie">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Series Entregadas</p>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             </ul>
@@ -135,3 +139,25 @@
     </div>
     <!-- /.sidebar -->
 </aside>
+
+<div class="modal fade" id="modal-buscarSerie">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Buscar Serie</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @include('Reportes.Series.form')
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
