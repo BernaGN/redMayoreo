@@ -48,8 +48,7 @@
                                         <form action="{{ route('series.index') }}" method="get">
                                             <div class="input-group input-group-sm" style="width: 350px;">
                                                 <input type="text" name="search" class="form-control float-right"
-                                                    placeholder="Ingrese el nombre o correo de un usuario"
-                                                    value="{{ $texto }}">
+                                                    placeholder="Ingrese el numero de pedido" value="{{ $texto }}">
 
                                                 <div class="input-group-append">
                                                     <button type="submit" class="btn btn-default">

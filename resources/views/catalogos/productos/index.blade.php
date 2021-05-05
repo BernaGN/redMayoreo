@@ -47,8 +47,7 @@
                                     <form action="{{ route('productos.index') }}" method="get">
                                         <div class="input-group input-group-sm" style="width: 350px;">
                                             <input type="text" name="search" class="form-control float-right"
-                                                placeholder="Ingrese el nombre o el representante"
-                                                value="{{ $texto }}">
+                                                placeholder="Ingrese el nombre del producto" value="{{ $texto }}">
 
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default">
