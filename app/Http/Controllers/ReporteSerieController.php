@@ -26,7 +26,7 @@ class ReporteSerieController extends Controller
                 'productos' => Producto::select('id', 'clave')->get(),
                 'series' => DetalleSerieEntregada::whereBetween('created_at', [$deste, $hasta])->get(),
             ]);
-            return $pdf->download('Series-'.$serieEntregada->num_pedido.'.pdf');
+            return $pdf->download('Series-'.$deste.' '.$hasta.'.pdf');
         }
         else {
             $serieEntregada = SerieEntregada::where('num_pedido', $request->id)->first();
@@ -40,3 +40,20 @@ class ReporteSerieController extends Controller
         }
     }
 }
+
+/*
+$serieEntregada = SerieEntregada::where('num_pedido', $request->id)->get();
+$seri = [];
+foreach($serieEntregada as $sE)
+    array_push($seri, DetalleSerieEntregada::where('serie_entregada_id', $sE->id)->get());
+
+//return $seri;
+//return var_dump(json_encode($seri, JSON_FORCE_OBJECT));
+$pdf = \PDF::loadView('pdf.series.reportePedido', [
+    'clientes' => Cliente::select('id', 'nombre')->get(),
+    'productos' => Producto::select('id', 'clave')->get(),
+    'series' => $seri,
+    'serieEntregada' => $serieEntregada,
+]);
+return $pdf->download('Series-'.$serieEntregada[0]->num_pedido.'.pdf');
+*/

@@ -79,6 +79,7 @@
                                                     <center>Clave</center>
                                                 </th>
                                                 <th></th>
+                                                <th></th>
                                                 @can('series.destroy')
                                                     <th></th>
                                                 @endcan
@@ -97,6 +98,10 @@
                                                     <td>
                                                         <center>
                                                             {{ $serieEntregada->detalleSerieEntregadas[0]->producto->clave }}
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <center>{{ $serieEntregada->created_at->diffForHumans() }}
                                                         </center>
                                                     </td>
                                                     <td><a class="btn btn-link"

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <style>
         .content {
-            width: 90%
+            width: 80%
         }
 
         .clearfix:after {
@@ -167,11 +167,6 @@
         </div>
     </header>
     <main>
-        <div><span>Numero de Pedido: </span> {{ $serieEntregada->num_pedido }}</div>
-        <div><span>Cliente: </span> {{ $serieEntregada->cliente->nombre }}</div>
-        <div><span>Direccion: </span> {{ $serieEntregada->cliente->direccion }}</div>
-        <div><span>Email: </span> {{ $serieEntregada->cliente->email }}</div>
-        <div><span>Celular: </span> {{ $serieEntregada->cliente->celular }}</div>
         <table>
             <thead>
                 <tr>
@@ -183,8 +178,9 @@
             <tbody>
                 @foreach ($series as $serie)
                     <tr>
-                        <td class="service">{{ $serieEntregada->detalleSerieEntregadas[0]->producto->nombre }}</td>
-                        <td class="desc">{{ $serieEntregada->detalleSerieEntregadas[0]->producto->clave }}</td>
+                        <td class="service">{{ $serie->producto->nombre }}
+                        </td>
+                        <td class="desc">{{ $serie->producto->clave }}</td>
                         <td>{{ $serie->numSeries->nombre }}</td>
                     </tr>
                 @endforeach
