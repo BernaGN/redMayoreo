@@ -43,6 +43,21 @@
                                         Agregar Producto
                                     </button>
                                 @endcan
+                                <a class="btn btn-light" href="{{ route('exportar-productos') }}">
+                                    Exportar
+                                </a>
+                                <div class="links">
+                                    <form method="post" action="{{ url('importar-productos') }}"
+                                        enctype="multipart/form-data">
+                                        <fieldset>
+                                            <legend>Importar datos</legend>
+                                            @csrf
+                                            <input type="file" name="excel">
+                                            <br><br>
+                                            <input type="submit" value="Enviar" style="padding: 10px 20px;">
+                                        </fieldset>
+                                    </form>
+                                </div>
                                 <div class="card-tools">
                                     <form action="{{ route('productos.index') }}" method="get">
                                         <div class="input-group input-group-sm" style="width: 350px;">

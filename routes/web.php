@@ -34,12 +34,19 @@ Route::resource('/usuarios', UsuarioController::class)->except('create', 'show')
 Route::resource('/roles', RolController::class)->only(['index', 'store', 'edit', 'update']);
 
 //Catalogos
-Route::resource('/proveedores', App\Http\Controllers\ProveedorController::class)->except('create', 'show');
-Route::resource('/clientes', App\Http\Controllers\ClienteController::class)->except('create', 'show');
-Route::resource('/productos', App\Http\Controllers\ProductoController::class)->except('create', 'show');
+Route::resource('/proveedores', ProveedorController::class)->except('create', 'show');
+Route::resource('/clientes', ClienteController::class)->except('create', 'show');
+Route::resource('/productos', ProductoController::class)->except('create', 'show');
 
 //Procesos
-Route::resource('/series', App\Http\Controllers\SerieController::class)->except('create', 'edit', 'update');
+Route::resource('/series', SerieController::class)->except('create', 'edit', 'update');
 
 //Reportes
 Route::get('/reporte-series-pdf/{id?}', [App\Http\Controllers\ReporteSerieController::class, 'pdf'])->name('reporte-series-pdf');
+Route::get('exportar-proveedores', [ProveedorController::class, 'export'])->name('exportar-proveedores');
+Route::get('exportar-clientes', [ClienteController::class, 'export'])->name('exportar-clientes');
+Route::get('exportar-productos', [ProductoController::class, 'export'])->name('exportar-productos');
+
+Route::post('importar-proveedores', [ProveedorController::class, 'import'])->name('importar-proveedores');
+Route::post('importar-clientes', [ClienteController::class, 'import'])->name('importar-clientes');
+Route::post('importar-productos', [ProductoController::class, 'import'])->name('importar-productos');

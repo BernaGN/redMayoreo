@@ -43,6 +43,21 @@
                                         Agregar Proveedor
                                     </button>
                                 @endcan
+                                <a class="btn btn-light" href="{{ route('exportar-proveedores') }}">
+                                    Exportar
+                                </a>
+                                <div class="links">
+                                    <form method="post" action="{{ url('importar-proveedores') }}"
+                                        enctype="multipart/form-data">
+                                        <fieldset>
+                                            <legend>Importar datos</legend>
+                                            @csrf
+                                            <input type="file" name="excel">
+                                            <br><br>
+                                            <input type="submit" value="Enviar" style="padding: 10px 20px;">
+                                        </fieldset>
+                                    </form>
+                                </div>
                                 <div class="card-tools">
                                     <form action="{{ route('proveedores.index') }}" method="get">
                                         <div class="input-group input-group-sm" style="width: 350px;">

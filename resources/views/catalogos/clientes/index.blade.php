@@ -37,13 +37,27 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-
                                 @can('clientes.store')
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#modal-agregar">
                                         Agregar cliente
                                     </button>
                                 @endcan
+                                <a class="btn btn-light" href="{{ route('exportar-clientes') }}">
+                                    Exportar
+                                </a>
+                                <div class="links">
+                                    <form method="post" action="{{ url('importar-clientes') }}"
+                                        enctype="multipart/form-data">
+                                        <fieldset>
+                                            <legend>Importar datos</legend>
+                                            @csrf
+                                            <input type="file" name="excel">
+                                            <br><br>
+                                            <input type="submit" value="Enviar" style="padding: 10px 20px;">
+                                        </fieldset>
+                                    </form>
+                                </div>
                                 <div class="card-tools">
                                     <form action="{{ route('clientes.index') }}" method="get">
                                         <div class="input-group input-group-sm" style="width: 350px;">

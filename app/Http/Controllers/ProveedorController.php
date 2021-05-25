@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use App\Exports\ProveedoresExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProveedoresImport;
 
 class ProveedorController extends Controller
 {
@@ -76,5 +79,16 @@ class ProveedorController extends Controller
     {
         Proveedor::findOrFail($id)->delete();
         return back()->with('info', 'Se elimino el proveedor con exito');
+    }
+
+    public function import()
+    {
+        Excel::import(new ProveedoresImport, request()->file('excel'));
+        return back()->with('info', 'Se importa la informacion con exito');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProveedoresExport, 'proveedores.xlsx');
     }
 }

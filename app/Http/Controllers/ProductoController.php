@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use App\Exports\ProductosExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductosImport;
 
 class ProductoController extends Controller
 {
@@ -79,5 +82,16 @@ class ProductoController extends Controller
     {
         producto::findOrFail($id)->delete();
         return back()->with('info', 'Se elimino el proveedor con exito');
+    }
+
+    public function import()
+    {
+        Excel::import(new ProductosImport, request()->file('excel'));
+        return back()->with('info', 'Se importa la informacion con exito');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProductosExport, 'productos.xlsx');
     }
 }

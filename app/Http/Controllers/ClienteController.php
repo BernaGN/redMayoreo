@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use App\Exports\ClientesExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ClientesImport;
 
 class ClienteController extends Controller
 {
@@ -76,5 +79,16 @@ class ClienteController extends Controller
     {
         Cliente::findOrFail($id)->delete();
         return back()->with('info', 'Se elimino el proveedor con exito');
+    }
+
+    public function import()
+    {
+        Excel::import(new ClientesImport, request()->file('excel'));
+        return back()->with('info', 'Se importa la informacion con exito');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ClientesExport, 'clientes.xlsx');
     }
 }
